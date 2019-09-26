@@ -4,7 +4,7 @@ include_once("config.php");
 
 if(isset($_POST['update']))
 {	
-	$eid = $_POST['eid'];
+	$eid = isset($_GET['eid']) ? $_GET['eid'] : '';
 	$eFirstName = $_POST['eFirstName'];
 	$eLastName = $_POST['eLastName'];
 	$eGender = $_POST['eGender'];
@@ -62,7 +62,7 @@ if(isset($_POST['update']))
 ?>
 <?php
 //getting id from url
-$eid = $_GET['eid'];
+$eid = isset($_GET['eid']) ? $_GET['eid'] : '';
 
 //selecting data associated with this particular id
 $sql = "SELECT * FROM tbl_employees WHERE eid=:eid";
@@ -115,7 +115,7 @@ while($row = $query->fetch(PDO::FETCH_ASSOC))
 				<td><input type="float" name="eSalary" value="<?php echo $eSalary;?>"></td>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="eid" value=<?php echo $_GET['eid'];?>></td>
+				<td><input type="hidden" name="eid" value=<?php $eid = isset($_GET['eid']) ? $_GET['eid'] : '';?>></td>
 				<td><input type="submit" name="update" value="Update"></td>
 			</tr>
 		</table>
